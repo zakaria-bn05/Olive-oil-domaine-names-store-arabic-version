@@ -1,0 +1,16 @@
+const contact = document.getElementById('contact');
+const fullList = document.getElementById('full-list');
+const special = document.getElementById('special');
+
+contact.addEventListener('click', () => {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
+});
+fullList.addEventListener('click', () => {
+    window.scrollTo({
+        top: 800,
+        behavior: 'smooth'
+    });
+});

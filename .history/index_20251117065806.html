@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        .font-cairo {
+            font-family: 'Cairo', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            opacity: 0.92;
+        }
+
+        .bg-olive-btn {
+            background-color: #2f4f2f;
+        }
+
+        .bg-olive-btn:hover {
+            background-color: #3f6543;
+        }
+
+        .header {
+            height: 445px;
+            background-image: url('assets/header-picture.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+    <main class="font-Cairo w-full flex-1 flex flex-col bg-white text-gold-dark ">
+        <nav class="flex w-full h-16 px-[8%] items-center justify-between gap-1">
+
+
+            <div class="flex-1 flex justify-start items-center gap-[2%]">
+                <img src="assets/logo.png" class=" w-8 " href="#" alt="Website Logo">
+                <div>
+                    <p class="text-right font-bold">OliveDomains</p>
+                    <p class="text-xs font-cairo">نطاقات .COM لعلامات زيت الزيتون</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="" class="text-green-900 nav-link font-cairo">القائمة الكاملة</a>
+                <a href="" class="text-green-900 nav-link font-cairo">مميزة</a>
+                <a href="" class="bg-olive-btn rounded-md p-[6px] text-gray-100 nav-link font-cairo">تواصل معنا</a>
+            </div>
+        </nav>
+        <header class="header flex items-center justify-center">
+            <div class="bg-white rounded-md backdrop-blur-md bg-opacity-30 w-4/5 py-10 px-5 flex flex-col gap-3 ">
+                <h1 class="font-cairo text-5xl font-bold text-right "> ابدأ علامتك التجارية لزيت الزيتون اليوم.</h1>
+                <p class="text-gray-700 text-right text-xl ">
+                    نقدم لك أسماء نطاقات .COM قصيرة، سهلة التذكر، وجاهزة للانطلاق.
+                </p>
+                <div class="flex flex-row gap-3 mt-4">
+                    <button class="font-cairo bg-olive-btn px-3 py-2 text-gray-100 rounded-md">استعرض النطاقات
+                        المميزة</button>
+                    <button class="font-cairo">عرض القائمة الكاملة</button>
+                </div>
+            </div>
+        </header>
+    </main>
+</body>
+
+</html>
