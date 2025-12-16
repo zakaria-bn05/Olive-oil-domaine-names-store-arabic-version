@@ -3,6 +3,7 @@ const window_width = window.innerWidth;
 console.log(window_width, break_point);
 const contact = document.getElementById('contact');
 const fullList = document.getElementById('full-list');
+
 const fullList2 = document.getElementById('full-list-2');
 
 contact.addEventListener('click', () => {
@@ -55,35 +56,65 @@ sellingBtn.forEach(element => {
         window.open('https://sedo.com/search/?showportfolio=c67aa84ed5e26d9853476fb49144413aa5dfed49s', '_blank');
     });
 });
+// helper: create overlay once
+function ensureOverlay() {
+    let overlay = document.getElementById('modal-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'modal-overlay';
+        Object.assign(overlay.style, {
+            position: 'fixed', inset: '0', background: 'rgba(0,0,0,0.6)',
+            display: 'none', zIndex: 40
+        });
+        document.body.appendChild(overlay);
+    }
+    return overlay;
+}
 
+function openLandingModal() {
+    const landingPageContainer = document.getElementById('landing-page-container');
+    if (!landingPageContainer) return;
+    const overlay = ensureOverlay();
+    // style and show overlay + modal
+    overlay.style.display = 'block';
+    landingPageContainer.style.display = 'flex';
+    landingPageContainer.style.position = 'fixed';
+    landingPageContainer.style.zIndex = 50;
+    landingPageContainer.style.left = '50%';
+    landingPageContainer.style.top = '50%';
+    landingPageContainer.style.transform = 'translate(-50%, -50%)';
+    landingPageContainer.style.alignItems = 'center';
+    landingPageContainer.style.justifyContent = 'center';
+    landingPageContainer.style.gap = '1rem';
+    // prevent background scroll
+    document.body.style.overflow = 'hidden';
+}
 
-const previewBtns = document.querySelectorAll('#display-landing-page');
+function closeLandingModal() {
+    const landingPageContainer = document.getElementById('landing-page-container');
+    const overlay = document.getElementById('modal-overlay');
+    if (overlay) overlay.style.display = 'none';
+    if (landingPageContainer) landingPageContainer.style.display = 'none';
+    document.body.style.overflow = '';
+}
 
-const isArabic = document.documentElement.dir === 'rtl';
+const displayLandingPageBtn = document.getElementById('display-landing-page');
+if (displayLandingPageBtn) {
+    displayLandingPageBtn.addEventListener('click', () => {
+        openLandingModal();
+    });
+}
 
-const modalHTML = isArabic ? `
-  <div id="language-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50" style="display: none;">
-    <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 transform transition-all">
-      <h2 class="text-2xl font-bold text-center mb-6 font-cairo">اختر اللغة</h2>
-      <p class="text-center text-gray-600 mb-6 font-cairo">اختر اللغة المفضلة لديك لمعاينة صفحة الهبوط</p>
-      
-      <div class="flex flex-col gap-4">
-        <a href="Olive Oile Landing page/landing-page-english.html" target="_blank" 
-           class="bg-olive-btn text-white py-3 px-6 rounded-lg text-center font-cairo font-semibold hover:opacity-90 transition-opacity">
-          English (الإنجليزية)
-        </a>
-        <a href="Olive Oile Landing page/landing-page-arabic.html" target="_blank"
-           class="bg-olive-btn text-white py-3 px-6 rounded-lg text-center font-cairo font-semibold hover:opacity-90 transition-opacity">
-          العربية
-        </a>
-      </div>
-      
-      <button id="close-modal" class="mt-6 w-full py-2 text-gray-600 hover:text-gray-800 font-cairo">
-        إلغاء
-      </button>
-    </div>
-  </div>
-` : `
+const closeBtn = document.getElementById('close-btn');
+if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+        closeLandingModal();
+    });
+}
+const previewBtn = document.getElementById('display-landing-page');
+
+// Create modal HTML
+const modalHTML = `
   <div id="language-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50" style="display: none;">
     <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 transform transition-all">
       <h2 class="text-2xl font-bold text-center mb-6 font-cairo">Choose Language</h2>
@@ -111,10 +142,9 @@ document.body.insertAdjacentHTML('beforeend', modalHTML);
 
 const modal = document.getElementById('language-modal');
 const closeBtn = document.getElementById('close-modal');
-previewBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        modal.style.display = 'flex';
-    });
+
+previewBtn.addEventListener('click', () => {
+    modal.style.display = 'flex';
 });
 
 closeBtn.addEventListener('click', () => {

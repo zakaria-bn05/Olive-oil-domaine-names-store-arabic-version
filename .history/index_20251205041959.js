@@ -56,11 +56,15 @@ sellingBtn.forEach(element => {
     });
 });
 
+// Language Selection Modal Script - Works for both English and Arabic versions
 
+// Get all preview buttons (works for both pages)
 const previewBtns = document.querySelectorAll('#display-landing-page');
 
+// Detect if current page is Arabic (RTL)
 const isArabic = document.documentElement.dir === 'rtl';
 
+// Create modal HTML based on language
 const modalHTML = isArabic ? `
   <div id="language-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50" style="display: none;">
     <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 transform transition-all">
@@ -107,20 +111,26 @@ const modalHTML = isArabic ? `
   </div>
 `;
 
+// Insert modal into the page
 document.body.insertAdjacentHTML('beforeend', modalHTML);
 
+// Get modal elements
 const modal = document.getElementById('language-modal');
 const closeBtn = document.getElementById('close-modal');
+
+// Open modal when any preview button is clicked
 previewBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         modal.style.display = 'flex';
     });
 });
 
+// Close modal when close button is clicked
 closeBtn.addEventListener('click', () => {
     modal.style.display = 'none';
 });
 
+// Close modal when clicking outside the modal content
 modal.addEventListener('click', (e) => {
     if (e.target === modal) {
         modal.style.display = 'none';
