@@ -5,55 +5,121 @@ const contact = document.getElementById('contact');
 const fullList = document.getElementById('full-list');
 const fullList2 = document.getElementById('full-list-2');
 
-contact.addEventListener('click', () => {
-    window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth'
-    });
+// Mobile Sidebar Elements
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileSidebar = document.getElementById('mobile-sidebar');
+const closeSidebar = document.getElementById('close-sidebar');
+const sidebarOverlay = document.getElementById('sidebar-overlay');
+const contactMobile = document.getElementById('contact-mobile');
+const fullListMobile = document.getElementById('full-list-mobile');
+
+// Open Sidebar
+mobileMenuBtn.addEventListener('click', () => {
+  mobileSidebar.classList.add('open');
+  sidebarOverlay.classList.add('active');
+  document.body.style.overflow = 'hidden'; // Prevent scrolling
 });
 
-fullList.addEventListener('click', () => {
-    const scrolling = window_width > break_point ? 850 : 1490;
+// Close Sidebar
+const closeSidebarFunc = () => {
+  mobileSidebar.classList.remove('open');
+  sidebarOverlay.classList.remove('active');
+  document.body.style.overflow = 'auto'; // Enable scrolling
+};
+
+closeSidebar.addEventListener('click', closeSidebarFunc);
+sidebarOverlay.addEventListener('click', closeSidebarFunc);
+
+// Desktop Contact
+contact.addEventListener('click', () => {
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: 'smooth'
+  });
+});
+
+// Mobile Contact
+contactMobile.addEventListener('click', () => {
+  closeSidebarFunc();
+  setTimeout(() => {
     window.scrollTo({
-        top: scrolling,
-        behavior: 'smooth'
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
     });
+  }, 300);
+});
+
+// Desktop Full List
+fullList.addEventListener('click', () => {
+  const scrolling = window_width > break_point ? 850 : 1490;
+  window.scrollTo({
+    top: scrolling,
+    behavior: 'smooth'
+  });
 });
 
 fullList2.addEventListener('click', () => {
-    const scrolling = window_width > break_point ? 850 : 1490;
-    window.scrollTo({
-        top: scrolling,
-        behavior: 'smooth'
-    });
+  const scrolling = window_width > break_point ? 850 : 1490;
+  window.scrollTo({
+    top: scrolling,
+    behavior: 'smooth'
+  });
 });
 
+// Mobile Full List
+fullListMobile.addEventListener('click', () => {
+  closeSidebarFunc();
+  setTimeout(() => {
+    const scrolling = window_width > break_point ? 850 : 1490;
+    window.scrollTo({
+      top: scrolling,
+      behavior: 'smooth'
+    });
+  }, 300);
+});
+
+// Desktop Special Links
 const specials = document.querySelectorAll('.special');
 specials.forEach(special => {
-    special.addEventListener('click', () => {
-        const scrolling = window_width > break_point ? 450 : 450;
-        window.scrollTo({
-            top: scrolling,
-            behavior: 'smooth'
-        });
+  special.addEventListener('click', () => {
+    const scrolling = window_width > break_point ? 450 : 450;
+    window.scrollTo({
+      top: scrolling,
+      behavior: 'smooth'
     });
+  });
+});
+
+// Mobile Special Links
+const specialsMobile = document.querySelectorAll('.special-mobile');
+specialsMobile.forEach(special => {
+  special.addEventListener('click', () => {
+    closeSidebarFunc();
+    setTimeout(() => {
+      const scrolling = window_width > break_point ? 450 : 450;
+      window.scrollTo({
+        top: scrolling,
+        behavior: 'smooth'
+      });
+    }, 300);
+  });
 });
 
 const negotiationBtn = document.querySelectorAll('.negotiate');
 negotiationBtn.forEach(element => {
-    element.addEventListener('click', () => {
-        window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: 'smooth'
-        });
+  element.addEventListener('click', () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
     });
+  });
 });
 
 const sellingBtn = document.querySelectorAll('.selling');
 sellingBtn.forEach(element => {
-    element.addEventListener('click', () => {
-        window.open('https://sedo.com/search/?showportfolio=c67aa84ed5e26d9853476fb49144413aa5dfed49s', '_blank');
-    });
+  element.addEventListener('click', () => {
+    window.open('https://sedo.com/search/?showportfolio=c67aa84ed5e26d9853476fb49144413aa5dfed49s', '_blank');
+  });
 });
 
 
@@ -112,17 +178,17 @@ document.body.insertAdjacentHTML('beforeend', modalHTML);
 const modal = document.getElementById('language-modal');
 const closeBtn = document.getElementById('close-modal');
 previewBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        modal.style.display = 'flex';
-    });
+  btn.addEventListener('click', () => {
+    modal.style.display = 'flex';
+  });
 });
 
 closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
+  modal.style.display = 'none';
 });
 
 modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        modal.style.display = 'none';
-    }
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
 });

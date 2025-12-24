@@ -56,11 +56,6 @@
         }
 
         @media (max-width: 768px) {
-
-            nav {
-                margin-top: -40px;
-            }
-
             .special-domaine {
                 width: 400px
             }
@@ -69,30 +64,85 @@
                 padding-left: auto;
             }
         }
+
+        /* Sidebar Styles */
+        #mobile-sidebar.open {
+            transform: translateX(0);
+        }
+
+        #sidebar-overlay.active {
+            display: block;
+        }
     </style>
 </head>
 
 <body class="min-h-screen flex flex-col">
     <main class="font-Cairo w-full flex flex-col bg-gray-50 text-gold-dark ">
         <nav
-            class="sticky md:top-0 z-30 bg-white/60 backdrop-blur-sm flex w-full h-26 md:h-16 px-[4%] md:px-[8%] items-center justify-between md:gap-1">
+            class="sticky md:top-0 z-30 bg-white/60 backdrop-blur-sm flex w-full h-16 px-[4%] md:px-[8%] items-center justify-between md:gap-1">
 
-            <div class=" flex items-center gap-[2%]">
-                <img src="assets/logo.png" class=" w-8 cursor-pointer alt=" OliveDomains Logo">
+            <div class="flex items-center gap-[2%]">
+                <img src="assets/logo.png" class="w-8 cursor-pointer" alt="OliveDomains Logo">
                 <div>
                     <p class="text-right font-bold">OliveDomains</p>
                     <p class="text-xs font-cairo w-30">نطاقات .COM لعلامات زيت الزيتون</p>
                 </div>
             </div>
-            <div class="flex items-center mt-28 mb-2 md:m-0 gap-4">
-                <a id="full-list" class="text-green-900 nav-link font-cairo w-18 cursor-pointer md:w-max ">القائمة
-                    الكاملة</a>
-                <a id="" class="special text-green-900 nav-link font-cairo cursor-pointer ">مميزة</a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-4">
+                <a id="full-list" class="text-green-900 nav-link font-cairo cursor-pointer">القائمة الكاملة</a>
+                <a class="special text-green-900 nav-link font-cairo cursor-pointer">مميزة</a>
                 <a id="contact"
-                    class="bg-olive-btn rounded-md p-[4px] md:p-[6px] text-gray-100 nav-link font-cairo cursor-pointer md:w-max">تواصل
+                    class="bg-olive-btn rounded-md p-[6px] text-gray-100 nav-link font-cairo cursor-pointer">تواصل
                     معنا</a>
             </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-green-900 text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
+
+        <!-- Mobile Sidebar -->
+        <div id="mobile-sidebar"
+            class="fixed top-0 right-0 h-full w-64 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 md:hidden">
+            <div class="flex flex-col h-full">
+                <!-- Sidebar Header -->
+                <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                    <div class="flex items-center gap-2">
+                        <img src="assets/logo.png" class="w-8" alt="OliveDomains Logo">
+                        <p class="font-bold">OliveDomains</p>
+                    </div>
+                    <button id="close-sidebar" class="text-green-900 text-2xl focus:outline-none">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Sidebar Menu Items -->
+                <div class="flex flex-col p-4 gap-4">
+                    <a id="full-list-mobile"
+                        class="text-green-900 nav-link font-cairo cursor-pointer p-3 hover:bg-gray-100 rounded-md transition-colors">
+                        <i class="fas fa-list ml-2"></i>
+                        القائمة الكاملة
+                    </a>
+                    <a
+                        class="special-mobile text-green-900 nav-link font-cairo cursor-pointer p-3 hover:bg-gray-100 rounded-md transition-colors">
+                        <i class="fas fa-star ml-2"></i>
+                        مميزة
+                    </a>
+                    <a id="contact-mobile"
+                        class="bg-olive-btn rounded-md p-3 text-gray-100 nav-link font-cairo cursor-pointer hover:opacity-90 transition-opacity">
+                        <i class="fas fa-envelope ml-2"></i>
+                        تواصل معنا
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overlay -->
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40 md:hidden"></div>
+
         <header class="header flex items-center justify-center z-10 relative ">
             <div class="bg-white rounded-2xl backdrop-blur-sm bg-opacity-30 w-4/5 p-11 flex flex-col gap-3 ">
                 <h1 class="font-cairo text-4xl font-bold text-right "> ابدأ علامتك التجارية لزيت الزيتون اليوم.</h1>
