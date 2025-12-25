@@ -118,7 +118,7 @@ negotiationBtn.forEach(element => {
 const sellingBtn = document.querySelectorAll('.selling');
 sellingBtn.forEach(element => {
   element.addEventListener('click', () => {
-    window.open('https://sedo.com/search/?showportfolio=c67aa84ed5e26d9853476fb49144413aa5dfed49s', '_blank');
+    window.open('https://sedo.com/search/?member=c67aa84ed5e26d9853476fb49144413aa5dfed49', '_blank');
   });
 });
 
